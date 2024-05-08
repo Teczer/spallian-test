@@ -1,6 +1,9 @@
 import "./mainView.css";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { useQuery } from "@tanstack/react-query";
 
 import useDominantColor from "../../hooks/useDominantColor.js";
 
@@ -17,45 +20,49 @@ import SearchInput from "../../components/SearchInput/SearchInput.js";
 import PokemonStatBar from "../../components/PokemonStatBar/PokemonStatBar.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import RandomPokemonBtn from "../../components/RandomPokemonBtn/RandomPokemonBtn.js";
-import { Link } from "react-router-dom";
 
 const MainView = () => {
-  const [pokemon, setPokemon] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const randomIndex = Math.floor(Math.random() * 1000) + 1;
 
-  // FETCH RANDOM POKEMON
-  async function fetchRandomPokemon(number) {
-    const randomPokemonData = await getRandomPokemon(number);
-    setPokemon(randomPokemonData);
-    // Mettre à jour le nom du Pokémon dans l'URL
-    pushParamsToUrl({ pokemonName: randomPokemonData.name });
-  }
-
-  // SEARCH POKEMON
-  async function searchPokemon() {
-    const searchPokemonData = await getPokemonBySearch(searchQuery);
-    setPokemon(searchPokemonData);
-    pushParamsToUrl({ pokemonName: searchQuery });
-  }
+  const {
+    data: pokemon,
+    isLoading,
+    isError,
+    refetch: refetchPokemon,
+  } = useQuery({
+    queryKey: ["pokemon"],
+    queryFn: async () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has("pokemonName")) {
+        const pokemonName = searchParams.get("pokemonName");
+        return await getPokemonBySearch(pokemonName);
+      } else {
+        return await getRandomPokemon(randomIndex);
+      }
+    },
+    refetchOnWindowFocus: false,
+  });
 
   const pokemonDominantColor = useDominantColor(
     pokemon?.sprites?.other["official-artwork"].front_default
   );
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.has("pokemonName")) {
-      const pokemonName = searchParams.get("pokemonName");
-      // Effectuez le fetch en fonction du pokemonName
-      fetchRandomPokemon(pokemonName);
-    } else {
-      // Si le paramètre d'URL pokemonName n'est pas présent, effectuez un fetch aléatoire
-      fetchRandomPokemon(randomIndex);
-    }
-  }, []);
+  const fetchRandomPokemon = async (number) => {
+    const randomPokemonData = await getRandomPokemon(number);
+    pushParamsToUrl({ pokemonName: randomPokemonData.name });
+    refetchPokemon(randomPokemonData);
+  };
 
-  return !pokemon ? (
+  const searchPokemon = async () => {
+    const searchPokemonData = await getPokemonBySearch(searchQuery);
+    pushParamsToUrl({ pokemonName: searchQuery });
+    refetchPokemon(searchPokemonData);
+  };
+
+  if (isError) return <Loader isNoPokemon={true} />;
+
+  return isLoading ? (
     <Loader />
   ) : (
     <div
@@ -166,7 +173,7 @@ const MainView = () => {
       {/* GET RANDOM POKEMON BUTTON */}
       <div className="random-pokemon-container">
         <RandomPokemonBtn
-          fetchRandomPokemon={fetchRandomPokemon}
+          fetchRandomPokemon={() => fetchRandomPokemon(randomIndex)}
           pokemonDominantColor={pokemonDominantColor}
         >
           Get Random Pokemon

@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-
 export const getRandomPokemon = async (number) => {
   try {
     const response = await fetch(
