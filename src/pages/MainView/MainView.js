@@ -15,11 +15,11 @@ import {
   getRandomPokemon,
 } from "../../services/PokemonService.js";
 
-import Loader from "../../components/Loader/Loader.js";
 import SearchInput from "../../components/SearchInput/SearchInput.js";
 import PokemonStatBar from "../../components/PokemonStatBar/PokemonStatBar.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import RandomPokemonBtn from "../../components/RandomPokemonBtn/RandomPokemonBtn.js";
+import MainViewLoader from "../../components/Loader/MainViewLoader/MainViewLoader.js";
 
 const MainView = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,10 +60,10 @@ const MainView = () => {
     refetchPokemon(searchPokemonData);
   };
 
-  if (isError) return <Loader isNoPokemon={true} />;
+  if (isError) return <MainViewLoader isNoPokemon={true} />;
 
   return isLoading ? (
-    <Loader />
+    <MainViewLoader />
   ) : (
     <div
       className="container"

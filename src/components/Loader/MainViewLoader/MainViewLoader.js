@@ -1,9 +1,9 @@
-import "./loader.css";
+import "./mainviewloader.css";
 
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Loader({ isNoPokemon }) {
+function MainViewLoader({ isNoPokemon }) {
   if (isNoPokemon)
     return (
       <div className="loader-container">
@@ -33,4 +33,4 @@ function Loader({ isNoPokemon }) {
   );
 }
 
-export default Loader;
+export default MainViewLoader;

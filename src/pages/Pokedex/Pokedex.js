@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
+import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
+
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
   const currentPage = parseInt(searchParams.get("page")) || 1;
@@ -31,7 +33,7 @@ function Pokedex() {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <PokedexLoader />;
   if (isError) return <p>Error fetching Pokemon data</p>;
 
   return (
