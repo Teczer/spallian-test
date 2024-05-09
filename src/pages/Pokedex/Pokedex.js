@@ -7,6 +7,7 @@ import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
 import SearchInput from "../../components/SearchInput/SearchInput";
 
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
+import { pushParamsToUrl } from "../../utils/pushParamsUrl";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -20,6 +21,7 @@ function Pokedex() {
         (pageParam - 1) * 20
       }&limit=20`
     );
+    pushParamsToUrl({ page: pageParam });
     const data = await response.json();
     return data.results;
   };
