@@ -4,6 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
+import SearchInput from "../../components/SearchInput/SearchInput";
+
+import { BiFirstPage, BiLastPage } from "react-icons/bi";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -38,8 +41,8 @@ function Pokedex() {
 
   return (
     <div className="pokedex-container">
-      <h1>Pokedex</h1>
-
+      <h1 className="pokemon-main-title">Pokedex</h1>
+      <SearchInput />
       <div className="pokemon-list">
         {pokemonList.map((pokemon, index) => (
           <Link
@@ -60,12 +63,13 @@ function Pokedex() {
 
       <div className="pagination">
         <button
+          className="pagination-button"
           onClick={() =>
             setPageIndex((prevIndex) => Math.max(prevIndex - 1, 1))
           }
           disabled={pageIndex === 1}
         >
-          Précédent
+          <BiFirstPage />
         </button>
         <span>Page {pageIndex}</span>
         <button
@@ -76,7 +80,7 @@ function Pokedex() {
           }
           disabled={pageIndex === Math.ceil(1302 / 20)}
         >
-          Suivant
+          <BiLastPage />
         </button>
       </div>
     </div>
