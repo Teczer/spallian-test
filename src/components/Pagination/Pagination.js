@@ -1,4 +1,4 @@
-import "./pagination.css";
+import "./Pagination.css";
 
 import React from "react";
 

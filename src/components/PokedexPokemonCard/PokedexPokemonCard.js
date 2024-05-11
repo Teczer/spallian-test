@@ -1,4 +1,4 @@
-import "./pokemonPokemonCard.css";
+import "./PokedexPokemonCard.css";
 
 import React from "react";
 import { Link } from "react-router-dom";

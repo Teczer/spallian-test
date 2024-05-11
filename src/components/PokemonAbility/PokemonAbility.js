@@ -1,4 +1,4 @@
-import "./pokemonAbility.css";
+import "./PokemonAbility.css";
 
 import React from "react";
 

@@ -1,4 +1,4 @@
-import "./mainviewloader.css";
+import "./MainViewLoader.css";
 
 import React from "react";
 

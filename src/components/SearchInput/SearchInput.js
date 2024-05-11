@@ -1,4 +1,4 @@
-import "./searchInput.css";
+import "./SearchInput.css";
 
 import React from "react";
 
