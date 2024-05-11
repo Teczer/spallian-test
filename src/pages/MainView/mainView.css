@@ -13,7 +13,7 @@
 .pokedex-icon {
   width: 130px;
   object-fit: cover;
-  filter: drop-shadow(1px 10px 12px rgba(255, 255, 255, 0.699));
+  filter: drop-shadow(1px 10px 12px rgba(255, 255, 255, 0.4));
 
   &:hover {
     transition-property: all;
@@ -155,7 +155,6 @@ input[type="text"] {
 .pokeball-img {
   width: 40px;
   height: 40px;
-  filter: drop-shadow(1px 10px 12px white);
 }
 
 ul {
@@ -255,6 +254,13 @@ h3 {
   .container {
     padding: 20px 1rem;
   }
+  .search-container {
+    width: 60%;
+  }
+  .pokemon-splash {
+    width: 300px;
+    height: 300px;
+  }
   .pokemon-ability {
     padding: 10px;
     font-size: 18px;
@@ -271,11 +277,28 @@ h3 {
     padding: 10px; /* Réduire l'espacement */
   }
 
+  .pokemon-view-header {
+    height: 10%;
+    justify-content: start;
+    gap: 20px;
+    padding: 1.5rem;
+  }
+  .search-container {
+    justify-content: start;
+  }
+
   .pokemon-container {
+    height: 100%;
     gap: 20px;
     flex-direction: column;
     align-items: center;
     justify-content: start;
+  }
+
+  .pokedex-icon {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
   }
 
   .pokemon-stats-container,
@@ -319,13 +342,16 @@ h3 {
     align-items: center;
   }
 
-  img {
-    width: 200px; /* Réduire la taille de l'image */
-    height: 200px;
+  .pokemon-splash {
+    width: 230px; /* Réduire la taille de l'image */
+    height: 230px;
     object-fit: cover;
   }
 
   .random-pokemon-btn {
-    display: none;
+    margin-top: 10px;
+    width: 250px;
+    height: 50px;
+    font-size: 16px;
   }
 }

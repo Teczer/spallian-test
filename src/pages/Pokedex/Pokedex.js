@@ -1,13 +1,14 @@
 import "./pokedex.css";
+
 import React, { useState } from "react";
+
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
-import SearchInput from "../../components/SearchInput/SearchInput";
-
-import { BiFirstPage, BiLastPage } from "react-icons/bi";
 import { pushParamsToUrl } from "../../utils/pushParamsUrl";
+
+import Pagination from "../../components/Pagination/Pagination";
+import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -38,53 +39,37 @@ function Pokedex() {
     },
   });
 
-  if (isLoading) return <PokedexLoader />;
   if (isError) return <p>Error fetching Pokemon data</p>;
 
-  return (
+  return isLoading ? (
+    <PokedexLoader />
+  ) : (
     <div className="pokedex-container">
       <h1 className="pokemon-main-title">Pokedex</h1>
-      <SearchInput />
       <div className="pokemon-list">
-        {pokemonList.map((pokemon, index) => (
-          <Link
-            key={index}
-            className="pokemon-card"
-            to={`/?pokemonName=${pokemon.name}`}
-          >
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                (pageIndex - 1) * 20 + index + 1
-              }.png`}
-              alt={pokemon.name}
-            />
-            <p>{pokemon.name}</p>
-          </Link>
-        ))}
+        {pokemonList.map((pokemon, index) => {
+          const pokemonNumber = (pageIndex - 1) * 20 + index + 1;
+          const pokemonName =
+            pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+          return (
+            <Link
+              key={index}
+              className="pokemon-card"
+              to={`/?pokemonName=${pokemon.name}`}
+            >
+              <img
+                className="pokemon-sprite"
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonNumber}.png`}
+                alt={pokemon.name}
+              />
+              <p className="textstroke">{pokemonName}</p>
+              <span className="textstroke">(#{pokemonNumber})</span>
+            </Link>
+          );
+        })}
       </div>
 
-      <div className="pagination">
-        <button
-          className="pagination-button"
-          onClick={() =>
-            setPageIndex((prevIndex) => Math.max(prevIndex - 1, 1))
-          }
-          disabled={pageIndex === 1}
-        >
-          <BiFirstPage />
-        </button>
-        <span>Page {pageIndex}</span>
-        <button
-          onClick={() =>
-            setPageIndex((prevIndex) =>
-              Math.min(prevIndex + 1, Math.ceil(1302 / 20))
-            )
-          }
-          disabled={pageIndex === Math.ceil(1302 / 20)}
-        >
-          <BiLastPage />
-        </button>
-      </div>
+      <Pagination pageIndex={pageIndex} setPageIndex={setPageIndex} />
     </div>
   );
 }

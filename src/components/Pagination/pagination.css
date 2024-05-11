@@ -1,0 +1,33 @@
+.pagination {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #eeeef0;
+}
+
+.pagination-button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  background-color: #323035;
+  border: 1px solid #625f69;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #eeeef0;
+
+  &:hover {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    background-color: #eeeef0;
+    border: 1px solid #eeeef0;
+    color: #121113;
+  }
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

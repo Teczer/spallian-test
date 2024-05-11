@@ -132,41 +132,45 @@ const MainView = () => {
 
         {/* POKEMON ABILITIES + TYPES */}
         <div className="pokemon-abilities-container">
-          <SectionTitle>Abilities :</SectionTitle>
-          <ul className="pokemon-abilities-box">
-            {pokemon.abilities.map(({ ability }, index) => (
-              <li
-                className="pokemon-ability textstroke"
-                key={index}
-                style={{
-                  backgroundColor: pokemonDominantColor,
-                }}
-              >
-                {ability.name}
-              </li>
-            ))}
-          </ul>
-          <SectionTitle>Types :</SectionTitle>
-          <ul className="pokemon-abilities-box">
-            {pokemon.types.map(({ type }, index) => {
-              const typeData = colorsTypes[type.name.toLowerCase()]; // Obtenir les données du type à partir de colorsTypes
-              const backgroundColor = typeData ? typeData.color : ""; // Couleur de fond du type
-              const icon = typeData ? typeData.icon : ""; // Chemin de l'icône du type
-
-              return (
+          <div className="pokemon-ability-title-card">
+            <SectionTitle>Abilities :</SectionTitle>
+            <ul className="pokemon-abilities-box">
+              {pokemon.abilities.map(({ ability }, index) => (
                 <li
                   className="pokemon-ability textstroke"
                   key={index}
                   style={{
-                    backgroundColor: backgroundColor,
+                    backgroundColor: pokemonDominantColor,
                   }}
                 >
-                  <img className="type-icon" src={icon} alt={type.name} />
-                  <span>{type.name}</span>
+                  {ability.name}
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+          </div>
+          <div className="pokemon-ability-title-card">
+            <SectionTitle>Types :</SectionTitle>
+            <ul className="pokemon-abilities-box">
+              {pokemon.types.map(({ type }, index) => {
+                const typeData = colorsTypes[type.name.toLowerCase()]; // Obtenir les données du type à partir de colorsTypes
+                const backgroundColor = typeData ? typeData.color : ""; // Couleur de fond du type
+                const icon = typeData ? typeData.icon : ""; // Chemin de l'icône du type
+
+                return (
+                  <li
+                    className="pokemon-ability textstroke"
+                    key={index}
+                    style={{
+                      backgroundColor: backgroundColor,
+                    }}
+                  >
+                    <img className="type-icon" src={icon} alt={type.name} />
+                    <span>{type.name}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
 

@@ -11,7 +11,7 @@ function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
     >
       <input
         type="text"
-        placeholder="Pikachu, Yveltal..."
+        placeholder="Pikachu, Yveltal... OR ID (1,23...)"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

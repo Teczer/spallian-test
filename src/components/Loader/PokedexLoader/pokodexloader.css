@@ -1,61 +1,50 @@
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.pokedex-loader-container {
+  background-color: #121113;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  padding: 20px 20rem;
 }
 
-body {
-  background-color: #192935;
+.pokemon-main-title {
+  color: #eeeef0;
 }
 
-.wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
+.pokemon-list-loader {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colonnes avec largeur égale */
+  grid-auto-rows: auto; /* Hauteur automatique pour les lignes */
+  justify-items: center; /* Centrer les éléments horizontalement dans les cellules */
+  gap: 20px;
 }
 
-.pokeball {
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid;
-  animation: frames 0.8s linear 0s infinite;
+.pokedex-loader-pokemon-card {
+  filter: drop-shadow(1px 10px 12px #d6c7e44d);
+  width: 150px;
+  height: 150px;
+  background-color: #323035;
+  border: 1px solid #625f69;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.pokeball:after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  background-color: red;
-  border-bottom: 4px solid;
-  top: -4px;
+.pokemon-sprite {
+  width: 90%;
+  object-fit: cover;
 }
 
-.pokeball:before {
-  content: "";
-  position: absolute;
-  background-color: #fff;
-  width: 10px;
-  height: 10px;
-  border: 4px solid;
-  border-radius: 50%;
-  bottom: 18px;
-  right: 18px;
-  z-index: 1;
-}
-
-/* AnimationFrames */
-@keyframes frames {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.pokemon-card:hover {
+  transform: translateY(-5px);
 }
