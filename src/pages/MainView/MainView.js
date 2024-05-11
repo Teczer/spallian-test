@@ -1,5 +1,3 @@
-import "./mainView.css";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -23,6 +21,8 @@ import MainViewLoader from "../../components/Loader/MainViewLoader/MainViewLoade
 import PokemonAbility from "../../components/PokemonAbility/PokemonAbility.js";
 import PokemonTypes from "../../components/PokemonTypes/PokemonTypes.js";
 import NoPokemonFound from "../../components/NoPokemonFound/NoPokemonFound.js";
+
+import "./MainView.css";
 
 const MainView = () => {
   const [searchQuery, setSearchQuery] = useState("");

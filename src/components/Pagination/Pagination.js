@@ -1,9 +1,8 @@
-import "./pagination.css";
-
 import React from "react";
 
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
 
+import "./Pagination.css";
 function Pagination({ pageIndex, setPageIndex }) {
   return (
     <div className="pagination">

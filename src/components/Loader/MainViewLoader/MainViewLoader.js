@@ -1,7 +1,6 @@
-import "./mainViewLoader.css";
-
 import React from "react";
 
+import "./MainViewLoader.css";
 function MainViewLoader() {
   return (
     <div className="loader-container">

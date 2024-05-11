@@ -1,6 +1,6 @@
-import "./pokemonStatBar.css";
-
 import React from "react";
+
+import "./PokemonStatBar.css";
 
 function PokemonStatBar({ statName, statValue, percentage }) {
   return (

@@ -1,9 +1,8 @@
-import "./noPokemonFound.css";
-
 import React from "react";
 
 import { Link } from "react-router-dom";
 
+import "./NoPokemonFound.css";
 function NoPokemonFound() {
   return (
     <div className="pokemon-notfound-container">

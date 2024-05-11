@@ -1,9 +1,8 @@
-import "./pokedexLoader.css";
-
 import React from "react";
 
 import Pagination from "../../Pagination/Pagination";
 
+import "./PokedexLoader.css";
 function PokedexLoader({ pageIndex, setPageIndex }) {
   return (
     <div className="pokedex-container">

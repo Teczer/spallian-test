@@ -1,5 +1,3 @@
-import "./pokedex.css";
-
 import React, { useState } from "react";
 
 import { useLocation } from "react-router-dom";
@@ -12,6 +10,8 @@ import { pushParamsToUrl } from "../../utils/pushParamsUrl";
 import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
 import PokedexPokemonCard from "../../components/PokedexPokemonCard/PokedexPokemonCard";
 import Pagination from "../../components/Pagination/Pagination";
+
+import "./Pokedex.css";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);

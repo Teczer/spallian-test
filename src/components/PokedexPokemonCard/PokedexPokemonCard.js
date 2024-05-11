@@ -1,7 +1,7 @@
-import "./pokedexPokemonCard.css";
-
 import React from "react";
 import { Link } from "react-router-dom";
+
+import "./PokedexPokemonCard.css";
 
 function PokedexPokemonCard({ index, pokemonName, pokemonNumber }) {
   return (

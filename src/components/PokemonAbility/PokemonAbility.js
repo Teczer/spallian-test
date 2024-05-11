@@ -1,6 +1,6 @@
-import "./pokemonAbility.css";
-
 import React from "react";
+
+import "./PokemonAbility.css";
 
 function PokemonAbility({ pokemonDominantColor, ability }) {
   return (

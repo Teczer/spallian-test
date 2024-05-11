@@ -1,6 +1,6 @@
-import "./pokemonTypes.css";
-
 import React from "react";
+
+import "./PokemonTypes.css";
 
 function PokemonTypes({ backgroundColor, icon, type }) {
   return (
