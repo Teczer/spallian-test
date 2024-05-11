@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./randomPokemonBtn.css";
+import "./RandomPokemonBtn.css";
 
 function RandomPokemonBtn({
   children,
