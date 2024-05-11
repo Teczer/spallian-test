@@ -1,0 +1,42 @@
+.pokemon-notfound-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #121113;
+  border: 2px solid;
+  padding: 15rem;
+}
+
+.back-to-home-btn {
+  margin: 0 5px;
+  padding: 8px 12px;
+  background-color: #323035;
+  border: 1px solid #625f69;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #eeeef0;
+
+  &:hover {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    background-color: #eeeef0;
+    border: 1px solid #eeeef0;
+    color: #121113;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .pokemon-notfound-container {
+    padding: 20rem 0rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pokemon-notfound-title {
+    font-size: 18px;
+  }
+}

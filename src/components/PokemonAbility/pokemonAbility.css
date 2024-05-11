@@ -1,0 +1,21 @@
+.pokemon-ability {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(158, 15, 15, 0.616);
+  width: 200px;
+  height: 60px;
+  border-radius: 20px;
+  border: 1px solid white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Pour les écrans d'une largeur maximale de 1200 pixels */
+@media screen and (max-width: 1200px) {
+  .pokemon-ability {
+    padding: 10px;
+    font-size: 18px;
+  }
+}

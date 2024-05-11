@@ -1,0 +1,52 @@
+.pokemon-stats {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.pokemon-row-stats {
+  text-align: start;
+  font-size: 20px;
+  width: 40%;
+}
+
+.progress-bar {
+  width: 60%;
+  height: 20px;
+  background-color: rgb(41, 40, 51);
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.progress {
+  height: 100%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+/* Pour les écrans d'une largeur maximale de 1200 pixels */
+@media screen and (max-width: 1200px) {
+  .pokemon-row-stats {
+    font-size: 18px;
+    width: 55%;
+  }
+}
+
+/* Pour les écrans d'une largeur maximale de 768 pixels */
+@media screen and (max-width: 768px) {
+  .pokemon-stats {
+    width: 40%;
+    flex-direction: column; /* Afficher les statistiques des Pokémon en colonne */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pokemon-row-stats {
+    width: 100%;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 15px;
+  }
+}

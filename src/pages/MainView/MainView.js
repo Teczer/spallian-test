@@ -20,6 +20,9 @@ import PokemonStatBar from "../../components/PokemonStatBar/PokemonStatBar.js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
 import RandomPokemonBtn from "../../components/RandomPokemonBtn/RandomPokemonBtn.js";
 import MainViewLoader from "../../components/Loader/MainViewLoader/MainViewLoader.js";
+import PokemonAbility from "../../components/PokemonAbility/PokemonAbility.js";
+import PokemonTypes from "../../components/PokemonTypes/PokemonTypes.js";
+import NoPokemonFound from "../../components/NoPokemonFound/NoPokemonFound.js";
 
 const MainView = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,13 +63,13 @@ const MainView = () => {
     refetchPokemon(searchPokemonData);
   };
 
-  if (isError) return <MainViewLoader isNoPokemon={true} />;
+  if (isError) return <NoPokemonFound />;
 
   return isLoading ? (
     <MainViewLoader />
   ) : (
     <div
-      className="container"
+      className="mainview-container"
       style={{ backgroundColor: pokemonDominantColor }}
     >
       {/* SEARCH INPUT FORM */}
@@ -132,22 +135,20 @@ const MainView = () => {
 
         {/* POKEMON ABILITIES + TYPES */}
         <div className="pokemon-abilities-container">
+          {/* POKEMON ABILITIES */}
           <div className="pokemon-ability-title-card">
             <SectionTitle>Abilities :</SectionTitle>
             <ul className="pokemon-abilities-box">
               {pokemon.abilities.map(({ ability }, index) => (
-                <li
-                  className="pokemon-ability textstroke"
+                <PokemonAbility
                   key={index}
-                  style={{
-                    backgroundColor: pokemonDominantColor,
-                  }}
-                >
-                  {ability.name}
-                </li>
+                  pokemonDominantColor={pokemonDominantColor}
+                  ability={ability}
+                />
               ))}
             </ul>
           </div>
+          {/* POKEMON TYPES */}
           <div className="pokemon-ability-title-card">
             <SectionTitle>Types :</SectionTitle>
             <ul className="pokemon-abilities-box">
@@ -157,16 +158,12 @@ const MainView = () => {
                 const icon = typeData ? typeData.icon : ""; // Chemin de l'icône du type
 
                 return (
-                  <li
-                    className="pokemon-ability textstroke"
+                  <PokemonTypes
                     key={index}
-                    style={{
-                      backgroundColor: backgroundColor,
-                    }}
-                  >
-                    <img className="type-icon" src={icon} alt={type.name} />
-                    <span>{type.name}</span>
-                  </li>
+                    backgroundColor={backgroundColor}
+                    icon={icon}
+                    type={type}
+                  />
                 );
               })}
             </ul>

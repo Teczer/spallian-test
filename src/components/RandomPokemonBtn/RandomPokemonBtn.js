@@ -1,3 +1,5 @@
+import "./RandomPokemonBtn.css";
+
 import React from "react";
 
 function RandomPokemonBtn({
@@ -11,10 +13,10 @@ function RandomPokemonBtn({
         const newRandomIndex = Math.floor(Math.random() * 1000) + 1;
         fetchRandomPokemon(newRandomIndex);
       }}
-      className="random-pokemon-btn textstroke"
+      className="random-pokemon-btn"
       style={{ backgroundColor: pokemonDominantColor }}
     >
-      {children}
+      <p className="textstroke">{children}</p>
     </button>
   );
 }

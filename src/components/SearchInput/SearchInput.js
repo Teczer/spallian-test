@@ -1,3 +1,5 @@
+import "./searchInput.css";
+
 import React from "react";
 
 function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
@@ -6,7 +8,9 @@ function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
       className="search-container"
       onSubmit={(e) => {
         e.preventDefault();
-        searchPokemon();
+        if (searchQuery.length > 0) {
+          searchPokemon();
+        }
       }}
     >
       <input
@@ -15,12 +19,19 @@ function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button className="pokeball-search-btn" onClick={searchPokemon}>
+      <button
+        className="pokeball-search-btn"
+        onClick={() => {
+          if (searchQuery.length > 0) {
+            searchPokemon();
+          }
+        }}
+      >
         <img
           className="pokeball-img"
           src="/assets/pokeball.png"
           alt="pokeball"
-        ></img>
+        />
       </button>
     </form>
   );
