@@ -4,8 +4,13 @@ ENV NODE_ENV dev
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 
-RUN npm install
+RUN npm install --global pnpm
+RUN pnpm install
 
-CMD [ "npm", "start" ]
+RUN pnpm build
+
+EXPOSE 3000
+
+CMD [ "serve", "-s", "build" ]

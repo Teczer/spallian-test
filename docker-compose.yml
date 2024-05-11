@@ -9,6 +9,8 @@ services:
       context: .
       target: dev
     volumes:
-      - ./*:/app/*
+      - .:/app
+    environment:
+      NODE_ENV: development
     ports:
       - 3000:3000
