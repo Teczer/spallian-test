@@ -2,13 +2,16 @@ import "./pokedex.css";
 
 import React, { useState } from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+
+import { getPokemonList } from "../../services/PokemonService";
 
 import { pushParamsToUrl } from "../../utils/pushParamsUrl";
 
-import Pagination from "../../components/Pagination/Pagination";
 import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
+import PokedexPokemonCard from "../../components/PokedexPokemonCard/PokedexPokemonCard";
+import Pagination from "../../components/Pagination/Pagination";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -17,14 +20,9 @@ function Pokedex() {
   const [pageIndex, setPageIndex] = useState(currentPage);
 
   const fetchPokemonList = async ({ pageParam = pageIndex }) => {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=${
-        (pageParam - 1) * 20
-      }&limit=20`
-    );
+    const response = await getPokemonList(pageParam);
     pushParamsToUrl({ page: pageParam });
-    const data = await response.json();
-    return data.results;
+    return response;
   };
 
   const {
@@ -42,32 +40,24 @@ function Pokedex() {
   if (isError) return <p>Error fetching Pokemon data</p>;
 
   return isLoading ? (
-    <PokedexLoader />
+    <PokedexLoader pageIndex={pageIndex} setPageIndex={setPageIndex} />
   ) : (
     <div className="pokedex-container">
       <h1 className="pokemon-main-title">Pokedex</h1>
-      <div className="pokemon-list">
+      <ul className="pokemon-list">
         {pokemonList.map((pokemon, index) => {
           const pokemonNumber = (pageIndex - 1) * 20 + index + 1;
           const pokemonName =
             pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
           return (
-            <Link
-              key={index}
-              className="pokemon-card"
-              to={`/?pokemonName=${pokemon.name}`}
-            >
-              <img
-                className="pokemon-sprite"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonNumber}.png`}
-                alt={pokemon.name}
-              />
-              <p className="textstroke">{pokemonName}</p>
-              <span className="textstroke">(#{pokemonNumber})</span>
-            </Link>
+            <PokedexPokemonCard
+              index={index}
+              pokemonName={pokemonName}
+              pokemonNumber={pokemonNumber}
+            />
           );
         })}
-      </div>
+      </ul>
 
       <Pagination pageIndex={pageIndex} setPageIndex={setPageIndex} />
     </div>

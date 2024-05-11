@@ -30,3 +30,20 @@ export const getPokemonBySearch = async (searchQuery) => {
     console.error("Error searching Pokemon:", error);
   }
 };
+
+export const getPokemonList = async (pageParam) => {
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/?offset=${
+        (pageParam - 1) * 20
+      }&limit=20`
+    );
+    if (!response.ok) {
+      throw new Error("Pokemon not found");
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error searching Pokemon:", error);
+  }
+};

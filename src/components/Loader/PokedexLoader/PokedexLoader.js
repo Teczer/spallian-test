@@ -1,19 +1,23 @@
 import "./pokodexloader.css";
+
 import React from "react";
 
-function PokedexLoader() {
+import Pagination from "../../Pagination/Pagination";
+
+function PokedexLoader({ pageIndex, setPageIndex }) {
   return (
-    <div className="pokedex-loader-container">
+    <div className="pokedex-container">
       <h1 className="pokemon-main-title">Pokedex</h1>
-      <div className="pokemon-list-loader">
+      <ul className="pokemon-list">
         {Array.from({ length: 20 }).map((pokemon, index) => {
           return (
-            <div key={index} className="pokedex-loader-pokemon-card">
+            <li key={index} className="pokemon-card">
               <p className="pokedex-loader-pokemon-name"></p>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
+      <Pagination pageIndex={pageIndex} setPageIndex={setPageIndex} />
     </div>
   );
 }
