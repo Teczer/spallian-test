@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./searchInput.css";
+import "./SearchInput.css";
 
 function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
   return (
