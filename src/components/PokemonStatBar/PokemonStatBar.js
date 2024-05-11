@@ -1,4 +1,4 @@
-import "./PokemonStatBar.css";
+import "./pokemonStatBar.css";
 
 import React from "react";
 

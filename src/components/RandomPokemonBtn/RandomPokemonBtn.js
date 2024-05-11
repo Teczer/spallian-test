@@ -1,4 +1,4 @@
-import "./RandomPokemonBtn.css";
+import "./randomPokemonBtn.css";
 
 import React from "react";
 

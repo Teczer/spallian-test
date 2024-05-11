@@ -1,4 +1,4 @@
-import "./PokedexLoader.css";
+import "./pokedexLoader.css";
 
 import React from "react";
 
