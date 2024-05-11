@@ -1,16 +1,11 @@
-version: "3.8"
+version: '3'
 
 services:
-  app:
-    container_name: app
-    working_dir: /app
-    image: app
+  spalliandex:
+    container_name: spalliandex
+    image: spalliandex:latest
     build:
       context: .
-      target: dev
-    volumes:
-      - .:/app
-    environment:
-      NODE_ENV: development
+      dockerfile: ./Dockerfile
     ports:
-      - 3000:3000
+      - 4888:4888

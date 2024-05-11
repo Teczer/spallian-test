@@ -1,16 +1,17 @@
-FROM node:18-alpine AS dev
-
-ENV NODE_ENV dev
-
+# Utilisez une image Node.js en tant que base
+FROM node:20.9.0-alpine
+# Définissez le répertoire de travail
 WORKDIR /app
-
-COPY . /app
-
 RUN npm install --global pnpm
-RUN pnpm install
 
-RUN pnpm build
+# Copiez le package.json et le package-lock.json pour installer les dépendances
+COPY package*.json ./
 
-EXPOSE 3000
+# Installez les dépendances
+RUN pnpm install --no-frozen-lockfile
 
-CMD [ "serve", "-s", "build" ]
+# Copiez le reste des fichiers de l'application
+COPY . .
+
+# Démarrez l'application
+CMD ["pnpm", "start"]
