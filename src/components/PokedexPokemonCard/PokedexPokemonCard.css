@@ -18,15 +18,6 @@
   }
 }
 
-.pokemon-link-card {
-  padding: 10px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .pokemon-sprite {
   width: 80%;
   height: 60%;

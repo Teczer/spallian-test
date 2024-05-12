@@ -12,6 +12,7 @@ import PokedexPokemonCard from "../../components/PokedexPokemonCard/PokedexPokem
 import Pagination from "../../components/Pagination/Pagination";
 
 import "./Pokedex.css";
+import { Link } from "react-router-dom";
 
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
@@ -50,11 +51,14 @@ function Pokedex() {
           const pokemonName =
             pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
           return (
-            <PokedexPokemonCard
-              index={index}
-              pokemonName={pokemonName}
-              pokemonNumber={pokemonNumber}
-            />
+            <li key={index}>
+              <Link to={`/?pokemonName=${pokemonName}`}>
+                <PokedexPokemonCard
+                  pokemonName={pokemonName}
+                  pokemonNumber={pokemonNumber}
+                />
+              </Link>
+            </li>
           );
         })}
       </ul>
