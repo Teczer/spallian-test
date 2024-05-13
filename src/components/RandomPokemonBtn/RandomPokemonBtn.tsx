@@ -1,12 +1,16 @@
-import React from "react";
-
 import "./RandomPokemonBtn.css";
 
-function RandomPokemonBtn({
+interface Props {
+  children: React.ReactNode; // Children est de type React.ReactNode
+  fetchRandomPokemon: (index: number) => void; // fetchRandomPokemon est une fonction prenant un nombre en paramètre et ne retournant rien (void)
+  pokemonDominantColor: string;
+}
+
+const RandomPokemonBtn: React.FC<Props> = ({
   children,
   fetchRandomPokemon,
   pokemonDominantColor,
-}) {
+}: Props) => {
   return (
     <button
       onClick={() => {
@@ -19,6 +23,6 @@ function RandomPokemonBtn({
       <p className="textstroke">{children}</p>
     </button>
   );
-}
+};
 
 export default RandomPokemonBtn;

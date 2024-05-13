@@ -1,9 +1,12 @@
-import React from "react";
-
 import { BiFirstPage, BiLastPage } from "react-icons/bi";
-
 import "./Pagination.css";
-function Pagination({ pageIndex, setPageIndex }) {
+
+interface Props {
+  pageIndex: number;
+  setPageIndex: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Pagination: React.FC<Props> = ({ pageIndex, setPageIndex }) => {
   return (
     <div className="pagination">
       <button
@@ -27,6 +30,6 @@ function Pagination({ pageIndex, setPageIndex }) {
       </button>
     </div>
   );
-}
+};
 
 export default Pagination;

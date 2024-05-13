@@ -1,12 +1,12 @@
-import React from "react";
-
 import "./MainViewLoader.css";
-function MainViewLoader() {
+
+const MainViewLoader: React.FC = () => {
   return (
     <div className="loader-container">
       {/* SKELETON STATS */}
       <ul className="loader-stats-box">
-        {Array.from({ length: 6 }).map((pokemon, index) => {
+        {Array.from({ length: 6 }).map((_, index) => {
+          // Utilisation de `_` pour indiquer que la variable n'est pas utilisée
           return (
             <li key={index} className="loader-progress-skeleton">
               <div className="loader-skeleton-stat"></div>
@@ -22,7 +22,8 @@ function MainViewLoader() {
       </div>
       {/* SKELETON ABILITIES */}
       <div className="loader-atributes-container">
-        {Array.from({ length: 2 }).map((pokemon, index) => {
+        {Array.from({ length: 2 }).map((_, index) => {
+          // Utilisation de `_` pour indiquer que la variable n'est pas utilisée
           return (
             <div key={index} className="skeleton-attribute-container">
               <div className="skeleton-attribute-title"></div>
@@ -36,6 +37,6 @@ function MainViewLoader() {
       </div>
     </div>
   );
-}
+};
 
 export default MainViewLoader;

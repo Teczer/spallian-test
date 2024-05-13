@@ -1,8 +1,16 @@
-import React from "react";
-
 import "./SearchInput.css";
 
-function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
+interface Props {
+  searchPokemon: () => void;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchInput: React.FC<Props> = ({
+  searchPokemon,
+  searchQuery,
+  setSearchQuery,
+}) => {
   return (
     <form
       className="search-container"
@@ -35,6 +43,6 @@ function SearchInput({ searchPokemon, searchQuery, setSearchQuery }) {
       </button>
     </form>
   );
-}
+};
 
 export default SearchInput;

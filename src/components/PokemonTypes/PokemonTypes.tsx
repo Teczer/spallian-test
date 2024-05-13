@@ -1,8 +1,16 @@
-import React from "react";
-
 import "./PokemonTypes.css";
 
-function PokemonTypes({ backgroundColor, icon, type }) {
+interface Type {
+  name: string;
+}
+
+interface Props {
+  backgroundColor: string;
+  icon: string;
+  type: Type;
+}
+
+const PokemonTypes: React.FC<Props> = ({ backgroundColor, icon, type }) => {
   return (
     <li
       className="pokemon-ability"
@@ -14,6 +22,6 @@ function PokemonTypes({ backgroundColor, icon, type }) {
       <span className="textstroke">{type.name}</span>
     </li>
   );
-}
+};
 
 export default PokemonTypes;

@@ -1,8 +1,16 @@
-import React from "react";
-
 import "./PokemonStatBar.css";
 
-function PokemonStatBar({ statName, statValue, percentage }) {
+interface Props {
+  statName: string;
+  statValue: number;
+  percentage: number;
+}
+
+const PokemonStatBar: React.FC<Props> = ({
+  statName,
+  statValue,
+  percentage,
+}) => {
   return (
     <li className="pokemon-stats textstroke">
       <span className="pokemon-row-stats">
@@ -13,6 +21,6 @@ function PokemonStatBar({ statName, statValue, percentage }) {
       </div>
     </li>
   );
-}
+};
 
 export default PokemonStatBar;

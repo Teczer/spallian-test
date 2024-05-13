@@ -3,30 +3,30 @@ import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import useDominantColor from "../../hooks/useDominantColor.js";
+import useDominantColor from "../../hooks/useDominantColor";
 
-import { colorsTypes } from "../../utils/colorsType.js";
-import { pushParamsToUrl } from "../../utils/pushParamsUrl.js";
+import { colorsTypes } from "../../utils/colorsType";
+import { pushParamsToUrl } from "../../utils/pushParamsUrl";
 
 import {
   getPokemonBySearch,
   getRandomPokemon,
-} from "../../services/PokemonService.js";
+} from "../../services/PokemonService";
 
-import SearchInput from "../../components/SearchInput/SearchInput.js";
-import PokemonStatBar from "../../components/PokemonStatBar/PokemonStatBar.js";
-import SectionTitle from "../../components/SectionTitle/SectionTitle.js";
-import RandomPokemonBtn from "../../components/RandomPokemonBtn/RandomPokemonBtn.js";
-import MainViewLoader from "../../components/Loader/MainViewLoader/MainViewLoader.js";
-import PokemonAbility from "../../components/PokemonAbility/PokemonAbility.js";
-import PokemonTypes from "../../components/PokemonTypes/PokemonTypes.js";
-import NoPokemonFound from "../../components/NoPokemonFound/NoPokemonFound.js";
+import SearchInput from "../../components/SearchInput/SearchInput";
+import PokemonStatBar from "../../components/PokemonStatBar/PokemonStatBar";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import RandomPokemonBtn from "../../components/RandomPokemonBtn/RandomPokemonBtn";
+import MainViewLoader from "../../components/Loader/MainViewLoader/MainViewLoader";
+import PokemonAbility from "../../components/PokemonAbility/PokemonAbility";
+import PokemonTypes from "../../components/PokemonTypes/PokemonTypes";
+import NoPokemonFound from "../../components/NoPokemonFound/NoPokemonFound";
 
 import "./MainView.css";
 
 const MainView = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const randomIndex = Math.floor(Math.random() * 1000) + 1;
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const randomIndex: number = Math.floor(Math.random() * 1000) + 1;
 
   const {
     data: pokemon,
@@ -39,6 +39,7 @@ const MainView = () => {
       const searchParams = new URLSearchParams(window.location.search);
       if (searchParams.has("pokemonName")) {
         const pokemonName = searchParams.get("pokemonName");
+        if (!pokemonName) return;
         return await getPokemonBySearch(pokemonName);
       } else {
         return await getRandomPokemon(randomIndex);
@@ -47,25 +48,22 @@ const MainView = () => {
     refetchOnWindowFocus: false,
   });
 
-  const pokemonDominantColor = useDominantColor(
-    pokemon?.sprites?.other["official-artwork"].front_default
-  );
-
-  const fetchRandomPokemon = async (number) => {
-    const randomPokemonData = await getRandomPokemon(number);
-    pushParamsToUrl({ pokemonName: randomPokemonData.name });
-    refetchPokemon(randomPokemonData);
+  const fetchRandomPokemon = async () => {
+    pushParamsToUrl({ pokemonName: randomIndex.toString() });
+    refetchPokemon();
   };
-
   const searchPokemon = async () => {
-    const searchPokemonData = await getPokemonBySearch(searchQuery);
     pushParamsToUrl({ pokemonName: searchQuery });
-    refetchPokemon(searchPokemonData);
+    refetchPokemon();
   };
+
+  const pokemonDominantColor = useDominantColor(
+    pokemon?.sprites?.other["official-artwork"].front_default ?? ""
+  );
 
   if (isError) return <NoPokemonFound />;
 
-  return isLoading ? (
+  return isLoading || !pokemon ? (
     <MainViewLoader />
   ) : (
     <div
@@ -153,7 +151,7 @@ const MainView = () => {
             <SectionTitle>Types :</SectionTitle>
             <ul className="pokemon-abilities-box">
               {pokemon.types.map(({ type }, index) => {
-                const typeData = colorsTypes[type.name.toLowerCase()]; // Obtenir les données du type à partir de colorsTypes
+                const typeData = colorsTypes[type.name.toLowerCase()];
                 const backgroundColor = typeData ? typeData.color : ""; // Couleur de fond du type
                 const icon = typeData ? typeData.icon : ""; // Chemin de l'icône du type
 
@@ -174,7 +172,7 @@ const MainView = () => {
       {/* GET RANDOM POKEMON BUTTON */}
       <div className="random-pokemon-container">
         <RandomPokemonBtn
-          fetchRandomPokemon={() => fetchRandomPokemon(randomIndex)}
+          fetchRandomPokemon={fetchRandomPokemon}
           pokemonDominantColor={pokemonDominantColor}
         >
           Get Random Pokemon

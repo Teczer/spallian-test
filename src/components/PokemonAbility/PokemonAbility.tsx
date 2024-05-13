@@ -1,8 +1,16 @@
 import React from "react";
-
 import "./PokemonAbility.css";
 
-function PokemonAbility({ pokemonDominantColor, ability }) {
+interface Ability {
+  name: string;
+}
+
+interface Props {
+  pokemonDominantColor: string;
+  ability: Ability;
+}
+
+const PokemonAbility: React.FC<Props> = ({ pokemonDominantColor, ability }) => {
   return (
     <li
       className="pokemon-ability"
@@ -13,6 +21,6 @@ function PokemonAbility({ pokemonDominantColor, ability }) {
       <p className="textstroke">{ability.name}</p>
     </li>
   );
-}
+};
 
 export default PokemonAbility;

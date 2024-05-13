@@ -1,9 +1,8 @@
-import React from "react";
+import "./NoPokemonFound.css";
 
 import { Link } from "react-router-dom";
 
-import "./NoPokemonFound.css";
-function NoPokemonFound() {
+const NoPokemonFound: React.FC = () => {
   return (
     <div className="pokemon-notfound-container">
       <h1 className="pokemon-notfound-title textstroke">
@@ -17,6 +16,6 @@ function NoPokemonFound() {
       </a>
     </div>
   );
-}
+};
 
 export default NoPokemonFound;

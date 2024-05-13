@@ -1,5 +1,4 @@
-import React from "react";
-
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Routes, Route } from "react-router-dom";
@@ -8,15 +7,17 @@ import MainView from "./pages/MainView/MainView";
 import Pokedex from "./pages/Pokedex/Pokedex";
 
 const queryClient = new QueryClient();
-function App() {
+
+const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Routes>
         <Route path="/" element={<MainView />} />
         <Route path="/pokedex" element={<Pokedex />} />
       </Routes>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

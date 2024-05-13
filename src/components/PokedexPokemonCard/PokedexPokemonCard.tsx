@@ -1,8 +1,14 @@
-import React from "react";
-
 import "./PokedexPokemonCard.css";
 
-function PokedexPokemonCard({ pokemonName, pokemonNumber }) {
+interface Props {
+  pokemonName: string;
+  pokemonNumber: number;
+}
+
+const PokedexPokemonCard: React.FC<Props> = ({
+  pokemonName,
+  pokemonNumber,
+}) => {
   return (
     <div className="pokemon-card">
       <img
@@ -14,6 +20,6 @@ function PokedexPokemonCard({ pokemonName, pokemonNumber }) {
       <span className="textstroke">(#{pokemonNumber})</span>
     </div>
   );
-}
+};
 
 export default PokedexPokemonCard;

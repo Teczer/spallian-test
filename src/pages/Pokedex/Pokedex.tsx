@@ -1,30 +1,21 @@
-import React, { useState } from "react";
+import "./Pokedex.css";
 
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { getPokemonList } from "../../services/PokemonService";
-
-import { pushParamsToUrl } from "../../utils/pushParamsUrl";
 
 import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
 import PokedexPokemonCard from "../../components/PokedexPokemonCard/PokedexPokemonCard";
 import Pagination from "../../components/Pagination/Pagination";
 
-import "./Pokedex.css";
-import { Link } from "react-router-dom";
-
 function Pokedex() {
   const searchParams = new URLSearchParams(useLocation().search);
-  const currentPage = parseInt(searchParams.get("page")) || 1;
+  const currentPageString = searchParams.get("page");
+  const currentPage = currentPageString ? parseInt(currentPageString) : 1;
 
-  const [pageIndex, setPageIndex] = useState(currentPage);
-
-  const fetchPokemonList = async ({ pageParam = pageIndex }) => {
-    const response = await getPokemonList(pageParam);
-    pushParamsToUrl({ page: pageParam });
-    return response;
-  };
+  const [pageIndex, setPageIndex] = useState<number>(currentPage);
 
   const {
     data: pokemonList,
@@ -32,15 +23,15 @@ function Pokedex() {
     isError,
   } = useQuery({
     queryKey: ["pokemonList", pageIndex],
-    queryFn: fetchPokemonList,
-    config: {
-      cacheTime: 3600000, // Cache for 1 hour
+    queryFn: async () => {
+      const pokemonList = await getPokemonList(pageIndex);
+      return pokemonList;
     },
   });
 
   if (isError) return <p>Error fetching Pokemon data</p>;
 
-  return isLoading ? (
+  return isLoading || !pokemonList ? (
     <PokedexLoader pageIndex={pageIndex} setPageIndex={setPageIndex} />
   ) : (
     <div className="pokedex-container">

@@ -1,4 +1,11 @@
-export const colorsTypes = {
+interface ColorType {
+  [key: string]: {
+    color: string;
+    icon: string;
+  };
+}
+
+export const colorsTypes: ColorType = {
   normal: {
     color: "#aab09f",
     icon: "/assets/pokemonTypes/normal.svg",

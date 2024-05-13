@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import ColorThief from "colorthief";
+import ColorThief, { Color } from "colorthief";
 
-function useDominantColor(src) {
-  const [dominantColors, setDominantColors] = useState([0, 0, 0]);
+function useDominantColor(src: string): string {
+  const [dominantColors, setDominantColors] = useState<Color>([0, 0, 0]);
 
   useEffect(() => {
     if (!src) return;
