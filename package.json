@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-dom": "^18.3.0"
+    "@types/react-dom": "^18.3.0",
+    "cross-env": "^7.0.3"
   }
 }
