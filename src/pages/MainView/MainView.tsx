@@ -48,14 +48,15 @@ const MainView = () => {
     refetchOnWindowFocus: false,
   });
 
-  const fetchRandomPokemon = async () => {
+  function fetchRandomPokemon() {
     pushParamsToUrl({ pokemonName: randomIndex.toString() });
     refetchPokemon();
-  };
-  const searchPokemon = async () => {
+  }
+
+  function searchPokemon() {
     pushParamsToUrl({ pokemonName: searchQuery });
     refetchPokemon();
-  };
+  }
 
   const pokemonDominantColor = useDominantColor(
     pokemon?.sprites?.other["official-artwork"].front_default ?? ""

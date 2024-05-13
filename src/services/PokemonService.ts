@@ -1,12 +1,12 @@
 import { Pokemon, PokemonList } from "../types/types";
 
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+
 export const getRandomPokemon = async (
   number: number
 ): Promise<Pokemon | undefined> => {
   try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${number}/`
-    );
+    const response = await fetch(`${BASE_URL}/${number}/`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch random Pokemon");
@@ -23,9 +23,7 @@ export const getPokemonBySearch = async (
   searchQuery: string
 ): Promise<Pokemon | undefined> => {
   try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${searchQuery.toLowerCase()}`
-    );
+    const response = await fetch(`${BASE_URL}/${searchQuery.toLowerCase()}`);
     if (!response.ok) {
       throw new Error("Pokemon not found");
     }
@@ -41,9 +39,7 @@ export const getPokemonList = async (
 ): Promise<PokemonList | undefined> => {
   try {
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=${
-        (pageParam - 1) * 20
-      }&limit=20`
+      `${BASE_URL}/?offset=${(pageParam - 1) * 20}&limit=20`
     );
     if (!response.ok) {
       throw new Error("Pokemon not found");

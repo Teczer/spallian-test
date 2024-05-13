@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getPokemonList } from "../../services/PokemonService";
 
+import { pushParamsToUrl } from "../../utils/pushParamsUrl";
+
 import PokedexLoader from "../../components/Loader/PokedexLoader/PokedexLoader";
 import PokedexPokemonCard from "../../components/PokedexPokemonCard/PokedexPokemonCard";
 import Pagination from "../../components/Pagination/Pagination";
@@ -25,6 +27,7 @@ function Pokedex() {
     queryKey: ["pokemonList", pageIndex],
     queryFn: async () => {
       const pokemonList = await getPokemonList(pageIndex);
+      pushParamsToUrl({ page: pageIndex.toString() });
       return pokemonList;
     },
   });

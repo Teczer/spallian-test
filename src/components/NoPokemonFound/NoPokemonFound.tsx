@@ -11,9 +11,9 @@ const NoPokemonFound: React.FC = () => {
       <Link to="/pokedex">
         <img className="pokedex-icon" src="/assets/pokedex.png" alt="pokedex" />
       </Link>
-      <a className="back-to-home-btn" href="/">
+      <Link className="back-to-home-btn" to="/" reloadDocument>
         Back to Random Pokemon
-      </a>
+      </Link>
     </div>
   );
 };

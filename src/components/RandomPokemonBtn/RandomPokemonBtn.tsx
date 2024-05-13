@@ -1,8 +1,8 @@
 import "./RandomPokemonBtn.css";
 
 interface Props {
-  children: React.ReactNode; // Children est de type React.ReactNode
-  fetchRandomPokemon: (index: number) => void; // fetchRandomPokemon est une fonction prenant un nombre en paramètre et ne retournant rien (void)
+  children: React.ReactNode;
+  fetchRandomPokemon: (index: number) => void;
   pokemonDominantColor: string;
 }
 

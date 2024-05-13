@@ -36,7 +36,7 @@
 @media screen and (max-width: 768px) {
   .pokemon-stats {
     width: 40%;
-    flex-direction: column; /* Afficher les statistiques des Pokémon en colonne */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

@@ -8,9 +8,6 @@ dependencies:
   '@tanstack/react-query':
     specifier: ^5.35.1
     version: 5.35.1(react@18.3.1)
-  '@tanstack/react-query-devtools':
-    specifier: ^5.36.0
-    version: 5.36.0(@tanstack/react-query@5.35.1)(react@18.3.1)
   '@testing-library/jest-dom':
     specifier: ^5.17.0
     version: 5.17.0
@@ -2363,21 +2360,6 @@ packages:
 
   /@tanstack/query-core@5.35.1:
     resolution: {integrity: sha512-0Dnpybqb8+ps6WgqBnqFEC+1F/xLvUosRAq+wiGisTgolOZzqZfkE2995dEXmhuzINiTM7/a6xSGznU0NIvBkw==}
-    dev: false
-
-  /@tanstack/query-devtools@5.32.1:
-    resolution: {integrity: sha512-7Xq57Ctopiy/4atpb0uNY5VRuCqRS/1fi/WBCKKX6jHMa6cCgDuV/AQuiwRXcKARbq2OkVAOrW2v4xK9nTbcCA==}
-    dev: false
-
-  /@tanstack/react-query-devtools@5.36.0(@tanstack/react-query@5.35.1)(react@18.3.1):
-    resolution: {integrity: sha512-AxZSmM7CmjDQrcY9gceFBS+1DqkfTqAMpDCMltzIxMKvKn+ZhgBsV49aewhVXP1DgZzb+Is4f9HH2EMu//njXw==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.36.0
-      react: ^18.0.0
-    dependencies:
-      '@tanstack/query-devtools': 5.32.1
-      '@tanstack/react-query': 5.35.1(react@18.3.1)
-      react: 18.3.1
     dev: false
 
   /@tanstack/react-query@5.35.1(react@18.3.1):

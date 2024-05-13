@@ -6,7 +6,6 @@ const MainViewLoader: React.FC = () => {
       {/* SKELETON STATS */}
       <ul className="loader-stats-box">
         {Array.from({ length: 6 }).map((_, index) => {
-          // Utilisation de `_` pour indiquer que la variable n'est pas utilisée
           return (
             <li key={index} className="loader-progress-skeleton">
               <div className="loader-skeleton-stat"></div>
@@ -23,7 +22,6 @@ const MainViewLoader: React.FC = () => {
       {/* SKELETON ABILITIES */}
       <div className="loader-atributes-container">
         {Array.from({ length: 2 }).map((_, index) => {
-          // Utilisation de `_` pour indiquer que la variable n'est pas utilisée
           return (
             <div key={index} className="skeleton-attribute-container">
               <div className="skeleton-attribute-title"></div>

@@ -30,6 +30,7 @@
   gap: 20px;
 }
 
+/* Pour les écrans d'une largeur maximale de 768 pixels */
 @media screen and (max-width: 768px) {
   .pokedex-container {
     height: auto;
